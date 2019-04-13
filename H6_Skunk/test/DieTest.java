@@ -1,11 +1,9 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
-
-import edu.princeton.cs.introcs.StdOut;
 
 public class DieTest
 {
@@ -24,6 +22,7 @@ public class DieTest
 	@After
 	public void tearDown() throws Exception
 	{
+	
 	}
 
 	@Test

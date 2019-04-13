@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import edu.princeton.cs.introcs.*;
+
+import edu.princeton.cs.introcs.StdIn;
 
 public class SkunkDomain
 {
@@ -22,7 +23,7 @@ public class SkunkDomain
 	{
 		this.skunkUI = ui;
 		this.ui = ui; // hide behind the interface UI
-		
+
 		this.playerNames = new String[20];
 		this.players = new ArrayList<Player>();
 		this.skunkDice = new Dice();
@@ -54,25 +55,20 @@ public class SkunkDomain
 			ui.println("Next player is " + playerNames[activePlayerIndex] + ".");
 			String wantsToRollStr = ui.promptReadAndReturn("Roll? y or n");
 			boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
-			
+
 			while (wantsToRoll)
 			{
 				activePlayer.setRollScore(0);
 				skunkDice.roll();
 				if (skunkDice.getLastRoll() == 2)
 				{
-					ui.println("Two Skunks! You lose the turn, the round score, plus pay 4 chips to the kitty");
-					kitty += 4;
-					activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
-					activePlayer.setTurnScore(0);
-					activePlayer.setRoundScore(0);
+					handleSkunk();
 					wantsToRoll = false;
 					break;
 				}
 				else if (skunkDice.getLastRoll() == 3)
 				{
-					ui.println(
-							"Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
+					ui.println("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
 					kitty += 2;
 					activePlayer.setNumberChips(activePlayer.getNumberChips() - 2);
 					activePlayer.setTurnScore(0);
@@ -132,7 +128,7 @@ public class SkunkDomain
 
 		ui.println("Last turn for all...");
 
-		for (int i = activePlayerIndex, count = 0; count < numberOfPlayers-1; i = (i++) % numberOfPlayers, count++)
+		for (int i = activePlayerIndex, count = 0; count < numberOfPlayers - 1; i = (i++) % numberOfPlayers, count++)
 		{
 			ui.println("Last round for player " + playerNames[activePlayerIndex] + "...");
 			activePlayer.setTurnScore(0);
@@ -147,17 +143,13 @@ public class SkunkDomain
 
 				if (skunkDice.getLastRoll() == 2)
 				{
-					ui.println("Two Skunks! You lose the turn, the turn score, plus pay 4 chips to the kitty");
-					kitty += 4;
-					activePlayer.setNumberChips(activePlayer.getNumberChips() - 4);
-					activePlayer.setTurnScore(0);
+					handleSkunk("Two Skunks! You lose the turn, the round score, plus pay 4 chips to the kitty", 4, 0);
 					wantsToRoll = false;
 					break;
 				}
 				else if (skunkDice.getLastRoll() == 3)
 				{
-					ui.println(
-							"Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
+					ui.println("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
 					kitty += 2;
 					activePlayer.setNumberChips(activePlayer.getNumberChips() - 2);
 					activePlayer.setTurnScore(0);
@@ -217,8 +209,7 @@ public class SkunkDomain
 			}
 		}
 
-		ui.println(
-				"Round winner is " + playerNames[winner] + " with score of " + players.get(winner).getRoundScore());
+		ui.println("Round winner is " + playerNames[winner] + " with score of " + players.get(winner).getRoundScore());
 		players.get(winner).setNumberChips(players.get(winner).getNumberChips() + kitty);
 		ui.println("\nRound winner earns " + kitty + ", finishing with " + players.get(winner).getNumberChips());
 
@@ -234,6 +225,15 @@ public class SkunkDomain
 
 		ui.println("-----------------------");
 		return true;
+	}
+
+	private void handleSkunk(String msg, int kittyPenalty, int newRoundScore))
+	{
+		ui.println(msg);
+		kitty += kittyPenalty;
+		activePlayer.setNumberChips(activePlayer.getNumberChips() - kittyPenalty);
+		activePlayer.setTurnScore(0);
+		activePlayer.setRoundScore(newRoundScore);
 	}
 
 	public static void main(String[] args)

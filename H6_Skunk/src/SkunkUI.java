@@ -1,4 +1,5 @@
-import edu.princeton.cs.introcs.*;
+import edu.princeton.cs.introcs.StdIn;
+import edu.princeton.cs.introcs.StdOut;
 
 public class SkunkUI implements UI
 {
@@ -27,13 +28,13 @@ public class SkunkUI implements UI
 	public void print(String toPrint)
 	{
 		StdOut.print(toPrint);
-		
+
 	}
 
 	public void println(String toPrint)
 	{
 		StdOut.println(toPrint);
-		
+
 	}
 
 }

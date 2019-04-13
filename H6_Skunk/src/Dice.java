@@ -15,9 +15,9 @@ public class Dice
 	// Instance fields (variables) may be declared anywhere in class body
 	// Convention: put at top
 
-	private int lastRoll;
 	private Die die1;
 	private Die die2;
+	private int lastRoll;
 
 	// Constructors (object initializers) also can be declared anywhere
 	// Convention: after instance fields/variables
@@ -53,7 +53,7 @@ public class Dice
 
 		die1.roll();
 		die2.roll();
-		this.lastRoll = die1.getLastRoll() + die2.getLastRoll();
+		lastRoll = die1.getLastRoll() + die2.getLastRoll();
 
 	}
 
@@ -83,7 +83,7 @@ public class Dice
 	{
 		this.die2 = d;
 	}
-	
+
 	public static final int NUM_TRIALS = 360;
 
 	public static void main(String[] args)
