@@ -52,10 +52,9 @@ public class SkunkDomain
 		while (gameNotOver)
 		{
 			ui.println("Next player is " + playerNames[activePlayerIndex] + ".");
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
-			activePlayer.setTurnScore(0);
-
+			String wantsToRollStr = ui.promptReadAndReturn("Roll? y or n");
+			boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
+			
 			while (wantsToRoll)
 			{
 				activePlayer.setRollScore(0);
@@ -96,8 +95,8 @@ public class SkunkDomain
 				ui.println(
 						"Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
 
-				wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-				wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+				wantsToRollStr = ui.promptReadAndReturn("Roll again? y or n");
+				wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
 
 			}
 
@@ -138,8 +137,8 @@ public class SkunkDomain
 			ui.println("Last round for player " + playerNames[activePlayerIndex] + "...");
 			activePlayer.setTurnScore(0);
 
-			String wantsToRollStr = ui.promptReadAndReturn("Roll? [true or false]");
-			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			String wantsToRollStr = ui.promptReadAndReturn("Roll? y or n");
+			boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
 
 			while (wantsToRoll)
 			{
@@ -192,8 +191,8 @@ public class SkunkDomain
 					}
 					ui.println("-----------------------");
 
-					wantsToRollStr = ui.promptReadAndReturn("Roll again? [true or false]");
-					wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+					wantsToRollStr = ui.promptReadAndReturn("Roll again? y or n");
+					wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
 				}
 
 			}
