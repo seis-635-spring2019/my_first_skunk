@@ -1,11 +1,16 @@
 
-public class SkunkDice
+public class SkunkDice extends Dice
 {
-	public int lastRoll;
-	public Die die1;
-	public Die die2;
-
+	
 	public SkunkDice()
 	{
 	}
+
+	public boolean isDoubleSkunk()
+	{
+		
+		return getLastRoll();
+	}
+	
+	
 }

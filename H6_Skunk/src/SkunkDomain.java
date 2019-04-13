@@ -141,28 +141,26 @@ public class SkunkDomain
 				skunkDice.roll();
 				ui.println("Roll is " + skunkDice.toString() + "\n");
 
-				if (skunkDice.getLastRoll() == 2)
+				if (skunkDice.isDoubleSkunk())
 				{
-					handleSkunk("Two Skunks! You lose the turn, the round score, plus pay 4 chips to the kitty", 4, 0);
+					handleSkunk("Two Skunks! You lose the turn, the round score, plus pay 4 chips to the kitty", 
+							4, 0);
 					wantsToRoll = false;
 					break;
 				}
 				else if (skunkDice.getLastRoll() == 3)
 				{
-					ui.println("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty");
-					kitty += 2;
-					activePlayer.setNumberChips(activePlayer.getNumberChips() - 2);
-					activePlayer.setTurnScore(0);
+					handleSkunk("Skunks and Deuce! You lose the turn, the turn score, plus pay 2 chips to the kitty",
+							2,
+							activePlayer.getRoundScore());
+					
 					wantsToRoll = false;
 
 				}
 				else if (skunkDice.getDie1().getLastRoll() == 1 || skunkDice.getDie2().getLastRoll() == 1)
 				{
-					ui.println("One Skunk! You lose the turn, the turn core, plus pay 1 chip to the kitty");
-					kitty += 1;
-					activePlayer.setNumberChips(activePlayer.getNumberChips() - 1);
-					activePlayer.setTurnScore(0);
-					activePlayer.setRoundScore(0);
+					handleSkunk("One Skunk! You lose the turn, the turn core, plus pay 1 chip to the kitty",
+							1,activePlayer.getRoundScore());
 					wantsToRoll = false;
 				}
 				else
