@@ -54,7 +54,8 @@ public class SkunkDomain
 		{
 			ui.println("Next player is " + playerNames[activePlayerIndex] + ".");
 			String wantsToRollStr = ui.promptReadAndReturn("Roll? y or n");
-			boolean wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
+			boolean wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
+			activePlayer.setTurnScore(0);
 
 			while (wantsToRoll)
 			{
@@ -62,7 +63,7 @@ public class SkunkDomain
 				skunkDice.roll();
 				if (skunkDice.getLastRoll() == 2)
 				{
-					handleSkunk();
+					handleSkunk(wantsToRollStr, activePlayerIndex, activePlayerIndex);
 					wantsToRoll = false;
 					break;
 				}
@@ -92,7 +93,7 @@ public class SkunkDomain
 						"Roll of " + skunkDice.toString() + ", gives new turn score of " + activePlayer.getTurnScore());
 
 				wantsToRollStr = ui.promptReadAndReturn("Roll again? y or n");
-				wantsToRoll = 'y' == wantsToRollStr.toLowerCase().charAt(0);
+				wantsToRoll = Boolean.parseBoolean(wantsToRollStr);
 
 			}
 
@@ -141,7 +142,7 @@ public class SkunkDomain
 				skunkDice.roll();
 				ui.println("Roll is " + skunkDice.toString() + "\n");
 
-				if (skunkDice.isDoubleSkunk())
+				if (skunkDice.getLastRoll()==2)
 				{
 					handleSkunk("Two Skunks! You lose the turn, the round score, plus pay 4 chips to the kitty", 
 							4, 0);
@@ -225,7 +226,7 @@ public class SkunkDomain
 		return true;
 	}
 
-	private void handleSkunk(String msg, int kittyPenalty, int newRoundScore))
+	private void handleSkunk(String msg, int kittyPenalty, int newRoundScore)
 	{
 		ui.println(msg);
 		kitty += kittyPenalty;
