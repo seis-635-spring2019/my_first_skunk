@@ -1,4 +1,3 @@
-
 public interface UI
 {
 	String promptReadAndReturn(String question);
