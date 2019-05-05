@@ -4,19 +4,10 @@ import edu.princeton.cs.introcs.StdOut;
 public class SkunkUI implements UI
 {
 
-	public SkunkDomain skunkDomain;
-
-	public void setDomain(SkunkDomain skunkDomain)
-	{
-		this.skunkDomain = skunkDomain;
-
-	}
-
 	public String promptReadAndReturn(String question)
 	{
 		StdOut.print(question + " => ");
-		String result = StdIn.readLine();
-		return result;
+		return StdIn.readLine();
 	}
 
 	public static void main(String[] args)
