@@ -1,3 +1,4 @@
+//updated refactored
 import edu.princeton.cs.introcs.StdOut;
 
 /**
@@ -19,7 +20,7 @@ public class Dice
 	private Die die2;
 	private int lastRoll;
 
-	// Constructors (object initializers) also can be declared anywhere
+	// Constructors (object initializer) also can be declared anywhere
 	// Convention: after instance fields/variables
 
 	public Dice()
@@ -102,6 +103,17 @@ public class Dice
 
 		StdOut.println("Actual count: " + doubleSkunkCount);
 		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
+	}
+
+	public boolean isDeuce() { return (getDie1().getLastRoll() == 1 && getDie2().getLastRoll() == 2) || (getDie1().getLastRoll() == 2 && getDie2().getLastRoll() == 1);}
+
+	public boolean isDoubleSkunk() {		
+		return getDie1().getLastRoll() == 1 && getDie2().getLastRoll() == 1;
+	}
+
+	public boolean isOneSkunk() {
+		// TODO Auto-generated method stub
+		return getDie1().getLastRoll() == 1 || getDie2().getLastRoll() == 1;
 	}
 
 }

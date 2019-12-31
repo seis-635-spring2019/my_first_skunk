@@ -1,11 +1,10 @@
-
 public class Player
 {
-	public int rollScore;
-	public int turnScore;
-	public int roundScore;
-	public int gameScore; // for now, same as roundScore
-	public int numberChips;
+	private int rollScore;
+	private int turnScore;
+	private int roundScore;
+	private int gameScore; // for now, same as roundScore
+	private int numberChips;
 
 	public Player()
 	{
@@ -32,32 +31,32 @@ public class Player
 		rollScore += lastTotal;
 	}
 
-	public void setRollScore(int newRollScore)
+	void setRollScore(int newRollScore)
 	{
 		this.rollScore = newRollScore;
 	}
 
-	public int getRollScore()
+	int getRollScore()
 	{
 		return this.rollScore;
 	}
 
-	public int getNumberChips()
+	int getNumberChips()
 	{
 		return this.numberChips;
 	}
 
-	public void setNumberChips(int newChips)
+	void setNumberChips(int newChips)
 	{
 		this.numberChips = newChips;
 	}
 
-	public void setTurnScore(int newScore)
+	void setTurnScore(int newScore)
 	{
 		this.turnScore = newScore;
 	}
 
-	public int getTurnScore()
+	int getTurnScore()
 	{
 		return this.turnScore;
 	}
@@ -68,12 +67,12 @@ public class Player
 		return null;
 	}
 
-	public void setRoundScore(int i)
+	void setRoundScore(int i)
 	{
 		this.roundScore = i;
 	}
 
-	public int getRoundScore()
+	int getRoundScore()
 	{
 		return this.roundScore;
 	}

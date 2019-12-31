@@ -1,8 +1,7 @@
-
 public class Die
 {
 	private int lastRoll;
-	private boolean predictible = false;
+	private boolean predictable = false;
 	private int[] rolls;
 	private int index_of_next_roll;
 
@@ -18,22 +17,22 @@ public class Die
 			throw new RuntimeException("null initializing int[] array");
 		}
 
-		this.predictible = true;
+		this.predictable = true;
 		this.rolls = predictable_rolls;
 		this.index_of_next_roll = 0;
 
 	}
 
-	public int getLastRoll() // getter or accessor method
+	int getLastRoll() // getter or accessor method
 	{
 
 		return this.lastRoll;
 	}
 
-	public void roll() // note how this changes Die's state, but doesn't return
+	void roll() // note how this changes Die's state, but doesn't return
 						// anything
 	{
-		if (!predictible)
+		if (!predictable)
 			this.lastRoll = (int) (Math.random() * 6 + 1);
 		else
 		{
